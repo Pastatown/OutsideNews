@@ -11,17 +11,13 @@ import com.bumptech.glide.Glide
 class ArticleAdaptor(private val listener:OnArticleClick) : RecyclerView.Adapter<ArticleAdaptor.ArticleViewHolder>() {
 
     private val articles: ArrayList<News> = ArrayList()
+
     class ArticleViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         val titleView : TextView = itemView.findViewById(R.id.titre)
         val author : TextView = itemView.findViewById(R.id.auteur)
         val image : ImageView = itemView.findViewById(R.id.image)
-        val name : TextView = itemView.findViewById(R.id.name)
         val date : TextView = itemView.findViewById(R.id.date)
         val description : TextView = itemView.findViewById(R.id.description)
-
-
-
-
 
     }
 
@@ -38,12 +34,11 @@ class ArticleAdaptor(private val listener:OnArticleClick) : RecyclerView.Adapter
         val currentNews = articles[position]
         holder.titleView.text = currentNews.title
         holder.author.text = currentNews.author
-
         holder.date.text = currentNews.publishedAt
         holder.description.text = currentNews.description
 
 
-        Glide.with(holder.itemView.context).load(currentNews.urlToImage).into(holder.image)
+        Glide.with(holder.itemView.context).load(currentNews.imageUrl).into(holder.image)
     }
 
     override fun getItemCount(): Int {

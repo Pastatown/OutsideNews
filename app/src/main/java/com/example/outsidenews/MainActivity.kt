@@ -3,7 +3,7 @@ package com.example.outsidenews
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
                     val newsJsonObject = newsJsonArray.getJSONObject(i)
 
                     val news = News(
+
                         newsJsonObject.getString("title"),
                         newsJsonObject.getString("author"),
                         newsJsonObject.getString("url"),
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
                         newsJsonObject.getString("description"),
 
                     )
-                    Toast.makeText(this,"Entered",Toast.LENGTH_LONG).show()
+
                     newsArray.add(news)
                 }
                 mAdaptor.updateNews(newsArray)
@@ -63,7 +64,8 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
             Response.ErrorListener {
 
             }
-        ) {
+        )
+        {
             @Throws(AuthFailureError::class)
             override fun getHeaders(): Map<String, String> {
                 val params: MutableMap<String, String> = HashMap()
