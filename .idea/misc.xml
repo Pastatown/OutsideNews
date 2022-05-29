@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Plld/AndroidStudioProjects/OutsideNews-master/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Plld/AndroidStudioProjects/OutsideNews-master/app/src/main/res/layout/items_article.xml" value="0.358695652173913" />
         <entry key="..\:/Users/swant/AndroidStudioProjects/OutsideNews/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/swant/AndroidStudioProjects/OutsideNews/app/src/main/res/layout/items_article.xml" value="0.36666666666666664" />
       </map>

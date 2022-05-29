@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 
 class ArticleAdaptor(private val listener:OnArticleClick) : RecyclerView.Adapter<ArticleAdaptor.ArticleViewHolder>() {
 
-    private val articles = ArrayList<News>()
+    private val articles: ArrayList<News> = ArrayList()
     class ArticleViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         val titleView : TextView = itemView.findViewById(R.id.titre)
         val author : TextView = itemView.findViewById(R.id.auteur)
@@ -18,6 +18,10 @@ class ArticleAdaptor(private val listener:OnArticleClick) : RecyclerView.Adapter
         val name : TextView = itemView.findViewById(R.id.name)
         val date : TextView = itemView.findViewById(R.id.date)
         val description : TextView = itemView.findViewById(R.id.description)
+
+
+
+
 
     }
 
@@ -34,20 +38,21 @@ class ArticleAdaptor(private val listener:OnArticleClick) : RecyclerView.Adapter
         val currentNews = articles[position]
         holder.titleView.text = currentNews.title
         holder.author.text = currentNews.author
-        holder.name.text = currentNews.name
+
         holder.date.text = currentNews.publishedAt
         holder.description.text = currentNews.description
 
-        Glide.with(holder.itemView.context).load(currentNews.imageUrl).into(holder.image)
+
+        Glide.with(holder.itemView.context).load(currentNews.urlToImage).into(holder.image)
     }
 
     override fun getItemCount(): Int {
         return articles.size
     }
 
-    fun updateData(newData:ArrayList<News>){
+    fun updateNews(updatedNews:ArrayList<News>){
         articles.clear()
-        articles.addAll(newData)
+        articles.addAll(updatedNews)
         notifyDataSetChanged()
     }
 }
@@ -55,3 +60,4 @@ class ArticleAdaptor(private val listener:OnArticleClick) : RecyclerView.Adapter
 interface OnArticleClick{
     fun onClicked(news: News)
 }
+

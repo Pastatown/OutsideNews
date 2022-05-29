@@ -3,9 +3,11 @@ package com.example.outsidenews
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -23,42 +25,53 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+
+        fetchNews()
         mAdaptor = ArticleAdaptor(this)
         recyclerView.adapter = mAdaptor
     }
 
-    fun fetchNews(){
+    fun fetchNews() {
         val queue = Volley.newRequestQueue(this)
         val url = "https://newsapi.org/v2/top-headlines?country=fr&apiKey=1e77a16c1641498c885ab805ae42c370"
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET, url, null,
+        val getRequest: JsonObjectRequest = object : JsonObjectRequest(
+            Request.Method.GET,
+            url,
+            null,
             Response.Listener {
+
                 val newsJsonArray = it.getJSONArray("articles")
                 val newsArray = ArrayList<News>()
-                for(i in 0 until newsJsonArray.length()){
+                for(i in 0 until  newsJsonArray.length()){
                     val newsJsonObject = newsJsonArray.getJSONObject(i)
-                    val newsJsonArraySource = it.getJSONArray("source")
-                    val newsJsonObjectSource = newsJsonArraySource.getJSONObject(0)
+
                     val news = News(
-                        newsJsonObjectSource.getString("name"),
                         newsJsonObject.getString("title"),
-                        newsJsonObject.getString("description"),
                         newsJsonObject.getString("author"),
                         newsJsonObject.getString("url"),
                         newsJsonObject.getString("urlToImage"),
                         newsJsonObject.getString("publishedAt"),
-                        newsJsonObject.getString("content")
+                        newsJsonObject.getString("content"),
+                        newsJsonObject.getString("description"),
+
                     )
+                    Toast.makeText(this,"Entered",Toast.LENGTH_LONG).show()
                     newsArray.add(news)
                 }
-                mAdaptor.updateData(newsArray)
+                mAdaptor.updateNews(newsArray)
             },
             Response.ErrorListener {
 
             }
-        )
-        queue.add(jsonObjectRequest)
-
+        ) {
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val params: MutableMap<String, String> = HashMap()
+                params["User-Agent"] = "Mozilla/5.0"
+                return params
+            }
+        }
+        queue.add(getRequest)
     }
 
     override fun onClicked(news: News) {
