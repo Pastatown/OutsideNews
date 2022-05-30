@@ -3,6 +3,7 @@ package com.example.outsidenews
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.SearchView
 
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.RecyclerView
@@ -21,8 +22,9 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Définit notre recyclerView en LinearLayout
+        //Définit notre recyclerView en LinearLayout + la search bar
 
+        val search = findViewById<SearchView>(R.id.search)
         val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
