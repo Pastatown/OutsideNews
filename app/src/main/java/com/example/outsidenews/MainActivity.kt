@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         fetchNews("https://newsapi.org/v2/top-headlines?country=fr&apiKey=1e77a16c1641498c885ab805ae42c370")
         mAdaptor = ArticleAdaptor(this)
         recyclerView.adapter = mAdaptor
+        rechercher()
     }
 
     fun fetchNews(url: String) {
@@ -83,6 +84,27 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(news.url))
+    }
+
+    fun rechercher() {
+        val search = findViewById<SearchView>(R.id.search)
+
+        var url = "https://newsapi.org/v2/everything?apiKey=1e77a16c1641498c885ab805ae42c370&q="
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                search.clearFocus()
+                if (query != null) {
+                    url += query
+                    fetchNews(url)
+                    return false
+                }
+                return true
+            }
+        })
     }
 
 }
