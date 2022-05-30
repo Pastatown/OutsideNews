@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
 
+
         fetchNews("https://newsapi.org/v2/top-headlines?country=fr&apiKey=1e77a16c1641498c885ab805ae42c370")
         mAdaptor = ArticleAdaptor(this)
         recyclerView.adapter = mAdaptor
