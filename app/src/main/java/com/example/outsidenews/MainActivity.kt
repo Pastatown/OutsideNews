@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Définir notre recyclerView en LinearLayout
+        //Définit notre recyclerView en LinearLayout
+
         val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -46,7 +47,6 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
                     val newsJsonObject = newsJsonArray.getJSONObject(i)
 
                     val news = News(
-
                         newsJsonObject.getString("title"),
                         newsJsonObject.getString("description"),
                         newsJsonObject.getString("author"),
@@ -81,4 +81,5 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(news.url))
     }
+
 }
