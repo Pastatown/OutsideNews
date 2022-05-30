@@ -48,12 +48,12 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
                     val news = News(
 
                         newsJsonObject.getString("title"),
+                        newsJsonObject.getString("description"),
                         newsJsonObject.getString("author"),
                         newsJsonObject.getString("url"),
                         newsJsonObject.getString("urlToImage"),
                         newsJsonObject.getString("publishedAt"),
-                        newsJsonObject.getString("content"),
-                        newsJsonObject.getString("description"),
+                        newsJsonObject.getString("content")
 
                     )
 
