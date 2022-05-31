@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         val queue = Volley.newRequestQueue(this)
         /*val url = "https://newsapi.org/v2/top-headlines?country=fr&apiKey=1e77a16c1641498c885ab805ae42c370"*/
         val getRequest: JsonObjectRequest = object : JsonObjectRequest(
-            Request.Method.GET,
+            Method.GET,
             url,
             null,
             Response.Listener {
