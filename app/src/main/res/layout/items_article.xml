@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:textSize="14sp"
+        android:background="@drawable/border"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/date"
         app:layout_constraintTop_toBottomOf="@id/titre" />

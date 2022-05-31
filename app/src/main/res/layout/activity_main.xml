@@ -10,9 +10,34 @@
        android:id="@+id/recyclerView"
        android:layout_width="0dp"
        android:layout_height="0dp"
-       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintLeft_toLeftOf="parent"
-       app:layout_constraintRight_toRightOf="parent"
-       app:layout_constraintBottom_toBottomOf="parent"/>
+       app:layout_constraintRight_toRightOf="parent" />
+
+   <SearchView
+       android:id="@+id/search"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_weight="1"
+       android:background="@android:color/darker_gray"
+       android:iconifiedByDefault="false"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:queryBackground="@android:color/background_light"
+       app:submitBackground="@android:color/background_dark"></SearchView>
+	   
+	<!--<ListView
+       android:id="@+id/listVuew"
+       android:layout_width="411dp"
+       android:layout_height="684dp"
+       android:iconifiedByDefault="false"
+       app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+       app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="@+id/recyclerView"
+       app:layout_constraintTop_toTopOf="@+id/recyclerView"
+       app:queryBackground="@android:color/background_light"
+       app:submitBackground="@android:color/background_dark"></ListView> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

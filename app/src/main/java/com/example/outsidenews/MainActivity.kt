@@ -3,6 +3,7 @@ package com.example.outsidenews
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.*
 
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.RecyclerView
@@ -22,14 +23,13 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         setContentView(R.layout.activity_main)
 
         //Définit notre recyclerView en LinearLayout
-
         val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
 
         fetchNews("https://newsapi.org/v2/top-headlines?country=fr&apiKey=1e77a16c1641498c885ab805ae42c370")
         mAdaptor = ArticleAdaptor(this)
         recyclerView.adapter = mAdaptor
+        rechercher()
     }
 
     fun fetchNews(url: String) {
@@ -81,5 +81,35 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(news.url))
     }
+
+
+    fun rechercher() {
+        val search = findViewById<SearchView>(R.id.search)
+    //    val listView = findViewById<ListView>(R.id.listVuew)
+    //    listView.bringToFront()
+        val categories = arrayOf("business","entertainment","general","health","science","sports","technology")
+        val adapter : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_1, categories)
+        var url = "https://newsapi.org/v2/everything?apiKey=1e77a16c1641498c885ab805ae42c370&q="
+     //   listView.adapter = adapter
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                search.clearFocus()
+                if (query != null) {
+                    url += query
+                    fetchNews(url)
+                    url = "https://newsapi.org/v2/everything?apiKey=1e77a16c1641498c885ab805ae42c370&q="
+                    return false
+                }
+                return true
+            }
+        })
+    }
+
+
 
 }
