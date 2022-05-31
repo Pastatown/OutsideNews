@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
                 if (query != null) {
                     url += query
                     fetchNews(url)
+
                     url = "https://newsapi.org/v2/everything?apiKey=1e77a16c1641498c885ab805ae42c370&q="
                     return false
                 }
