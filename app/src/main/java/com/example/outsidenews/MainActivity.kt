@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -152,6 +153,11 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
 
     fun rechercher() { //Fonction de recherche par mot clés
         val search = findViewById<SearchView>(R.id.search)
+        val radio1 = findViewById<View>(R.id.radioPertinant)
+        val radio2 = findViewById<View>(R.id.radioPopulaire)
+        val radio3 = findViewById<View>(R.id.radioRecent)
+        val dateFrom = findViewById<View>(R.id.editTextDate)
+        val dateTo = findViewById<View>(R.id.editTextDate2)
     //    val listView = findViewById<ListView>(R.id.listVuew)
     //    listView.bringToFront()
     //    val categories = arrayOf("business","entertainment","general","health","science","sports","technology")
@@ -168,6 +174,12 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
                     url += query // Concaténation de l'url et du mot clé entré dans la searchBar
                     fetchNews(url)
                     url = "https://newsapi.org/v2/everything?apiKey=284cb51b9e774eaa9412b9906d9b2e0c&q="//Réinitialisation de l'url
+                    radio1.isVisible = true
+                    radio2.isVisible = true
+                    radio3.isVisible = true
+                    dateFrom.isVisible = true
+                    dateTo.isVisible = true
+
                     return false
                 }
                 return true
