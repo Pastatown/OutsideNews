@@ -1,13 +1,13 @@
 package com.example.outsidenews
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
-
+import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.Response
@@ -29,6 +29,22 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         fetchNews("https://newsapi.org/v2/top-headlines?country=fr&apiKey=1e77a16c1641498c885ab805ae42c370")
         mAdaptor = ArticleAdaptor(this)
         recyclerView.adapter = mAdaptor
+
+        val sport = findViewById<View>(R.id.buttonSport)
+        sport.setOnClickListener(listener)
+        val business = findViewById<View>(R.id.buttonBusiness)
+        business.setOnClickListener(listener)
+        val technology = findViewById<View>(R.id.buttonTech)
+        technology.setOnClickListener(listener)
+        val divertissement = findViewById<View>(R.id.buttonDivert)
+        divertissement.setOnClickListener(listener)
+        val generalite = findViewById<View>(R.id.buttonGeneral)
+        generalite.setOnClickListener(listener)
+        val sante = findViewById<View>(R.id.buttonSante)
+        sante.setOnClickListener(listener)
+        val science = findViewById<View>(R.id.buttonScience)
+        science.setOnClickListener(listener)
+
         rechercher()
     }
 
@@ -80,6 +96,48 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(news.url))
+    }
+    val listener= View.OnClickListener { recyclerView ->
+        var url = "https://newsapi.org/v2/top-headlines?apiKey=1e77a16c1641498c885ab805ae42c370&category="
+        val query : String
+        when (recyclerView.id) {
+            R.id.buttonSport -> {
+                query = "sport"
+                url += query
+                fetchNews(url)
+            }
+            R.id.buttonBusiness -> {
+                query = "business"
+                url += query
+                fetchNews(url)
+            }
+            R.id.buttonTech -> {
+                query = "technology"
+                url += query
+                fetchNews(url)
+            }
+            R.id.buttonDivert -> {
+                query = "entertainment"
+                url += query
+                fetchNews(url)
+            }
+            R.id.buttonGeneral -> {
+                query = "general"
+                url += query
+                fetchNews(url)
+            }
+            R.id.buttonSante -> {
+                query = "health"
+                url += query
+                fetchNews(url)
+            }
+            R.id.buttonScience -> {
+                query = "science"
+                url += query
+                fetchNews(url)
+            }
+        }
+        url = "https://newsapi.org/v2/top-headlines?apiKey=1e77a16c1641498c885ab805ae42c370&category="
     }
 
 
