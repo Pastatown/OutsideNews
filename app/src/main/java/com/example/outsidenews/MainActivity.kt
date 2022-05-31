@@ -1,13 +1,14 @@
 package com.example.outsidenews
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
-
+import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.Response
@@ -26,9 +27,39 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        val mSwipeRefreshLayout = findViewById<View>(R.id.swipeonrefresh) as SwipeRefreshLayout
+        mSwipeRefreshLayout.setOnRefreshListener {
+            // Execute code when refresh layout swiped
+            finish();
+            startActivity(getIntent());
+            mSwipeRefreshLayout.isRefreshing = false
+        }
+
         fetchNews("https://newsapi.org/v2/top-headlines?country=fr&apiKey=1e77a16c1641498c885ab805ae42c370")
         mAdaptor = ArticleAdaptor(this)
         recyclerView.adapter = mAdaptor
+
+        val sport = findViewById<View>(R.id.buttonSport)
+        sport.setOnClickListener(listener)
+        val business = findViewById<View>(R.id.buttonBusiness)
+        business.setOnClickListener(listener)
+        val technology = findViewById<View>(R.id.buttonTech)
+        technology.setOnClickListener(listener)
+        val divertissement = findViewById<View>(R.id.buttonDivert)
+        divertissement.setOnClickListener(listener)
+        val generalite = findViewById<View>(R.id.buttonGeneral)
+        generalite.setOnClickListener(listener)
+        val sante = findViewById<View>(R.id.buttonSante)
+        sante.setOnClickListener(listener)
+        val science = findViewById<View>(R.id.buttonScience)
+        science.setOnClickListener(listener)
+
+        val pertinant = findViewById<View>(R.id.radioPertinant)
+        pertinant.setOnClickListener(listener)
+        val populaire = findViewById<View>(R.id.radioPopulaire)
+        populaire.setOnClickListener(listener)
+        val recent = findViewById<View>(R.id.radioRecent)
+        recent.setOnClickListener(listener)
         rechercher()
     }
 
@@ -80,6 +111,42 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(news.url))
+    }
+    val listener= View.OnClickListener { recyclerView ->
+        var urlCategory = "https://newsapi.org/v2/top-headlines?apiKey=1e77a16c1641498c885ab805ae42c370&category="
+        val query : String
+        when (recyclerView.id) {
+            R.id.buttonSport -> {
+                query = "sport"
+                urlCategory += query
+                fetchNews(urlCategory)
+            } R.id.buttonBusiness -> {
+                query = "business"
+                urlCategory += query
+                fetchNews(urlCategory)
+            } R.id.buttonTech -> {
+                query = "technology"
+                urlCategory += query
+                fetchNews(urlCategory)
+            } R.id.buttonDivert -> {
+                query = "entertainment"
+                urlCategory += query
+                fetchNews(urlCategory)
+            } R.id.buttonGeneral -> {
+                query = "general"
+                urlCategory += query
+                fetchNews(urlCategory)
+            } R.id.buttonSante -> {
+                query = "health"
+                urlCategory += query
+                fetchNews(urlCategory)
+            } R.id.buttonScience -> {
+                query = "science"
+                urlCategory += query
+                fetchNews(urlCategory)
+            }
+        }
+        urlCategory = "https://newsapi.org/v2/top-headlines?apiKey=1e77a16c1641498c885ab805ae42c370&category="
     }
 
 

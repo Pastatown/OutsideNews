@@ -7,6 +7,18 @@
     android:background="@drawable/fond"
     tools:context=".MainActivity">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeonrefresh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/search"
+        app:layout_constraintTop_toBottomOf="@+id/hsvRadio"
+        app:layout_constraintVertical_bias="0.0">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
@@ -15,6 +27,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/listVuew" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <SearchView
         android:id="@+id/search"
@@ -58,28 +71,56 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonSport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sport"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="@id/button2" />
+                app:layout_constraintRight_toRightOf="@id/buttonBusiness" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/buttonBusiness"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Business"
-                app:layout_constraintLeft_toRightOf="@id/button"
-                app:layout_constraintRight_toLeftOf="@id/button3" />
+                app:layout_constraintLeft_toRightOf="@id/buttonSport"
+                app:layout_constraintRight_toLeftOf="@id/buttonTech" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/buttonTech"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Technology"
-                app:layout_constraintLeft_toRightOf="@id/button2"
+                android:text="Technologies"
+                app:layout_constraintLeft_toRightOf="@id/buttonBusiness"
                 app:layout_constraintRight_toRightOf="parent" />
+
+            <Button
+                android:id="@+id/buttonDivert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Divertissement"
+                app:layout_constraintLeft_toRightOf="@id/buttonTech" />
+
+            <Button
+                android:id="@+id/buttonGeneral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Général"
+                app:layout_constraintLeft_toRightOf="@id/buttonDivert" />
+
+            <Button
+                android:id="@+id/buttonSante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Santé"
+                app:layout_constraintLeft_toRightOf="@id/buttonGeneral" />
+
+            <Button
+                android:id="@+id/buttonScience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Science"
+                app:layout_constraintLeft_toRightOf="@id/buttonSante" />
 
 
         </LinearLayout>
@@ -102,35 +143,35 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/radioPertinant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Les plus pertinents"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/radioButton2"
+                app:layout_constraintRight_toLeftOf="@id/radioPopulaire"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/radioPopulaire"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Les plus populaires"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/radioButton"
-                app:layout_constraintRight_toLeftOf="@id/radioButton3"
+                app:layout_constraintLeft_toRightOf="@id/radioPertinant"
+                app:layout_constraintRight_toLeftOf="@id/radioRecent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RadioButton
-                android:id="@+id/radioButton3"
+                android:id="@+id/radioRecent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Les plus rÃ©cents"
+                android:text="Les plus récents"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/radioButton2"
+                app:layout_constraintLeft_toRightOf="@id/radioPopulaire"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
