@@ -83,27 +83,24 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
     }
 
 
-    fun rechercher() {
+    fun rechercher() { //Fonction de recherche par mot clés
         val search = findViewById<SearchView>(R.id.search)
     //    val listView = findViewById<ListView>(R.id.listVuew)
     //    listView.bringToFront()
-        val categories = arrayOf("business","entertainment","general","health","science","sports","technology")
-        val adapter : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_1, categories)
+    //    val categories = arrayOf("business","entertainment","general","health","science","sports","technology")
+    //    val adapter : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_1, categories)
         var url = "https://newsapi.org/v2/everything?apiKey=1e77a16c1641498c885ab805ae42c370&q="
      //   listView.adapter = adapter
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }
-
-
             override fun onQueryTextSubmit(query: String?): Boolean {
                 search.clearFocus()
                 if (query != null) {
-                    url += query
+                    url += query // Concaténation de l'url et du mot clé entré dans la searchBar
                     fetchNews(url)
-
-                    url = "https://newsapi.org/v2/everything?apiKey=1e77a16c1641498c885ab805ae42c370&q="
+                    url = "https://newsapi.org/v2/everything?apiKey=1e77a16c1641498c885ab805ae42c370&q="//Réinitialisation de l'url
                     return false
                 }
                 return true
