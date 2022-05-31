@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
             mSwipeRefreshLayout.isRefreshing = false
         }
 
-        fetchNews("https://newsapi.org/v2/top-headlines?country=fr&apiKey=1e77a16c1641498c885ab805ae42c370")
+        fetchNews("https://newsapi.org/v2/top-headlines?country=fr&apiKey=284cb51b9e774eaa9412b9906d9b2e0c")
         mAdaptor = ArticleAdaptor(this)
         recyclerView.adapter = mAdaptor
 
