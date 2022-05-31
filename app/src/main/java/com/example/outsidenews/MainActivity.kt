@@ -156,6 +156,8 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         val radio1 = findViewById<View>(R.id.radioPertinant)
         val radio2 = findViewById<View>(R.id.radioPopulaire)
         val radio3 = findViewById<View>(R.id.radioRecent)
+        val dateFrom = findViewById<View>(R.id.editTextDate)
+        val dateTo = findViewById<View>(R.id.editTextDate2)
     //    val listView = findViewById<ListView>(R.id.listVuew)
     //    listView.bringToFront()
     //    val categories = arrayOf("business","entertainment","general","health","science","sports","technology")
@@ -175,6 +177,9 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
                     radio1.isVisible = true
                     radio2.isVisible = true
                     radio3.isVisible = true
+                    dateFrom.isVisible = true
+                    dateTo.isVisible = true
+
                     return false
                 }
                 return true
