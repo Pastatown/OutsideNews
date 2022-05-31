@@ -65,9 +65,9 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
 
     fun fetchNews(url: String) {
         val queue = Volley.newRequestQueue(this)
-        /*val url = "https://newsapi.org/v2/top-headlines?country=fr&apiKey=1e77a16c1641498c885ab805ae42c370"*/
+        /*val url = "https://newsapi.org/v2/top-headlines?country=fr&apiKey=284cb51b9e774eaa9412b9906d9b2e0c"*/
         val getRequest: JsonObjectRequest = object : JsonObjectRequest(
-            Request.Method.GET,
+            Method.GET,
             url,
             null,
             Response.Listener {
@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
         customTabsIntent.launchUrl(this, Uri.parse(news.url))
     }
     val listener= View.OnClickListener { recyclerView ->
-        var urlCategory = "https://newsapi.org/v2/top-headlines?apiKey=1e77a16c1641498c885ab805ae42c370&category="
+        var urlCategory = "https://newsapi.org/v2/top-headlines?apiKey=284cb51b9e774eaa9412b9906d9b2e0c&category="
         val query : String
         when (recyclerView.id) {
             R.id.buttonSport -> {
@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
                 fetchNews(urlCategory)
             }
         }
-        urlCategory = "https://newsapi.org/v2/top-headlines?apiKey=1e77a16c1641498c885ab805ae42c370&category="
+        urlCategory = "https://newsapi.org/v2/top-headlines?apiKey=284cb51b9e774eaa9412b9906d9b2e0c&category="
     }
 
 
@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
     //    listView.bringToFront()
     //    val categories = arrayOf("business","entertainment","general","health","science","sports","technology")
     //    val adapter : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_1, categories)
-        var url = "https://newsapi.org/v2/everything?apiKey=1e77a16c1641498c885ab805ae42c370&q="
+        var url = "https://newsapi.org/v2/everything?apiKey=284cb51b9e774eaa9412b9906d9b2e0c&q="
      //   listView.adapter = adapter
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -167,7 +167,7 @@ class MainActivity : AppCompatActivity(), OnArticleClick {
                 if (query != null) {
                     url += query // Concaténation de l'url et du mot clé entré dans la searchBar
                     fetchNews(url)
-                    url = "https://newsapi.org/v2/everything?apiKey=1e77a16c1641498c885ab805ae42c370&q="//Réinitialisation de l'url
+                    url = "https://newsapi.org/v2/everything?apiKey=284cb51b9e774eaa9412b9906d9b2e0c&q="//Réinitialisation de l'url
                     return false
                 }
                 return true
